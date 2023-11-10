@@ -1,10 +1,9 @@
-import { IsEmail, IsNumber, IsString, Matches, MaxLength, MinLength } from "class-validator";
+import { IsIn, IsNumber, IsString, MaxLength, MinLength } from "class-validator";
 
 
 export class CreateUserProfileDto {
 
-    @IsString()
-    @IsEmail()
+    @IsIn(['men','female','others'])
     gender: string;
 
     @IsNumber()
@@ -12,11 +11,9 @@ export class CreateUserProfileDto {
     phone: number;
 
     @IsString()
-    @MinLength(3)
     estado: string;
     
     @IsString()
-    @MinLength(3)
     ciudad: string;
     
     @IsString()
