@@ -60,7 +60,7 @@ export class User {
         (shares)=> shares.user,
         { cascade: true }
     )
-    userShares: Shares;
+    userShares?: Shares[];
 
     @BeforeInsert()
     checkFieldsBeforeInsert() {

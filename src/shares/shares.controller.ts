@@ -1,8 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { SharesService } from './shares.service';
-import { CreateShareDto } from './dto/create-share.dto';
 import { BuySharesDto } from './dto/buy-shares.dto';
-import { share } from 'rxjs';
 import { User } from 'src/auth/entities';
 import { Auth, GetUser } from 'src/auth/decorators';
 
@@ -33,11 +31,4 @@ export class SharesController {
   findOne(@Param('buyId') buyId: string) {
     return this.sharesService.findOne(buyId);
   }
-
-  @Get(':userId')
-  findOneId(@Param('userId') userId: string) {
-    return this.sharesService.findOne(userId);
-  }
-
-
 }

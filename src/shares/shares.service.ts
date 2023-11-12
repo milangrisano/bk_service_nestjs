@@ -12,23 +12,26 @@ export class SharesService {
   constructor(
       @InjectRepository(Shares)
       private readonly sharesRepository: Repository<Shares>,
+      @InjectRepository(Shares)
+      private readonly userRepository: Repository<User>,
   ) {}
 
   async buyShares(createShareDto: CreateShareDto, user : User) {
     try {
       const shares = this.sharesRepository.create({
-        ...createShareDto, user
+        ...createShareDto, user,
       });
       await this.sharesRepository.save( shares );
-      return { 
-        shares      
-      } ;
+      const { user: omitUser, ...sharesWithoutUser } = shares;
+      return {
+        userId: user.id,
+        ...sharesWithoutUser,
+      };
     } catch (error) {
       console.log(error)
       throw new InternalServerErrorException('Ayuda')      
     }
   }
-  //Todo: La respuesta no debe mostrar todoa la informacion del usuario
 
   findAll() {
     return this.sharesRepository.find({});
@@ -37,9 +40,4 @@ export class SharesService {
   findOne(buyId: string) {
     return this.sharesRepository.findOneBy({buyId});
   }
-
-  // async findOneId(userId: string) Promise<Shares[]> {
-  //   const shares = await this.sharesRepository.find({where: {userId}});
-  //   return shares;
-  // }
 }
