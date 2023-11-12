@@ -40,4 +40,6 @@ export class SharesService {
   findOne(buyId: string) {
     return this.sharesRepository.findOneBy({buyId});
   }
+
+  
 }

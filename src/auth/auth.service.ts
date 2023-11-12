@@ -120,15 +120,5 @@ export class AuthService {
         throw new InternalServerErrorException('Please check server log');
         
     }
-    //!OJO: Manejar el error cuando colocan un email duplicado
-
-    async findShares( id: string ) {
-        const user = this.userRepository.findOneBy({
-            id,
-            // relation: {
-            //     shares: true
-            // }
-        });
-      return user;
-    }
+    //!OJO: Manejar el error cuando colocan un email duplicado    
 }

@@ -35,18 +35,6 @@ export class AuthController {
     findOneInactive( @Query() activateUserDto: ActivateUserDto ){
         return this.authServices.findOneInactive( activateUserDto);
     }
-        
-    // @Get(':email')
-    // findEmail( @Param() resetPassword: ResetPassword ){
-    //     return this.authServices.findEmail( resetPassword );
-    // }
-
     // Todo1: Recuperar la contraseña, se solicita un correo electronico para buscar en la base de datos y si se encuentra se le envia un codigo para que este lo introdusca y recupere la contraseña
     // Todo2: Cambiar la contraseña con un codigo
-
-    @Get(':id')
-    findId(@Param('id') id: string) {
-      return this.authServices.findShares(id);
-    }
-
 }
