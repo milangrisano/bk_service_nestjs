@@ -30,15 +30,16 @@ export class SharesService {
   }
   //Todo: La respuesta no debe mostrar todoa la informacion del usuario
 
-  create(createShareDto: CreateShareDto) {
-    return 'This action adds a new share';
-  }
-
   findAll() {
-    return `This action returns all shares`;
+    return this.sharesRepository.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} share`;
+  findOne(buyId: string) {
+    return this.sharesRepository.findOneBy({buyId});
   }
+
+  // async findOneId(userId: string) Promise<Shares[]> {
+  //   const shares = await this.sharesRepository.find({where: {userId}});
+  //   return shares;
+  // }
 }

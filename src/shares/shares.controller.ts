@@ -21,14 +21,22 @@ export class SharesController {
     return this.sharesService.buyShares(buyShareDto, user);
   }
 
-  @Get()
+  @Get('total_shares')
+  @Auth()
   findAll() {
     return this.sharesService.findAll();
   }
+  //Todo: Los usuarios solo pueden consultar la info de su banko
+  //todo: Se debe hacer un guards o un decorador que solo te de acceso a tu banko
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.sharesService.findOne(+id);
+  @Get(':buyId')
+  findOne(@Param('buyId') buyId: string) {
+    return this.sharesService.findOne(buyId);
+  }
+
+  @Get(':userId')
+  findOneId(@Param('userId') userId: string) {
+    return this.sharesService.findOne(userId);
   }
 
 
