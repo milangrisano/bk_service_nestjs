@@ -22,7 +22,6 @@ export class AuthService {
         try {
             const { password, ...userData } = registerUserDto;
             const user = this.userRepository.create({
-                // activationToken: Math.floor(100000 + Math.random() * 900000), //Todo: utilizar este codigo de javasript para generar el codigo
                 ...userData,
                 password: bcrypt.hashSync( password, 10 )
             })

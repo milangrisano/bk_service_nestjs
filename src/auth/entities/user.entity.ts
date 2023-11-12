@@ -1,5 +1,9 @@
-import { profile } from "console";
-import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, Generated, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Shares } from "src/shares/entities/share.entity";
+import { 
+    BeforeInsert, BeforeUpdate, Column, 
+    CreateDateColumn, Entity, OneToMany,
+    PrimaryGeneratedColumn
+} from "typeorm";
 
 
 @Entity('users')
@@ -50,6 +54,13 @@ export class User {
         default: ['user']
     })
     roles: string[];
+
+    @OneToMany(
+        ()=> Shares,
+        (shares)=> shares.user,
+        { cascade: true }
+    )
+    userShares: Shares;
 
     @BeforeInsert()
     checkFieldsBeforeInsert() {

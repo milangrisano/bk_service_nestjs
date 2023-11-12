@@ -1,13 +1,16 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
-
+import { User } from "../../auth/entities";
+import { PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, Entity } from "typeorm";
 
 @Entity()
 export class Shares {
 
-    @PrimaryGeneratedColumn('uuid')
-    id: number;
+    @PrimaryGeneratedColumn('uuid',{
+        name: 'buy_id',
+    })
+    buyId: string;
 
-    @Column('int',{
+    @Column({
+        type: 'int',
         default: 0
     })
     shares: number;
@@ -22,4 +25,12 @@ export class Shares {
          default: false,
     })
     status: boolean;
+
+    @ManyToOne(
+        ()=> User,
+        ( user )=> user.userShares,
+        {eager: true }
+    )
+    user: User;
+    
 }
