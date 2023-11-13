@@ -20,7 +20,7 @@ export class SharesController {
     return this.sharesService.buyShares(buyShareDto, user);
   }
 
-  @Get('total_shares')
+  @Get('all_shares')
   @Auth()
   findAll() {return this.sharesService.findAll()}
   //Todo: Los usuarios solo pueden consultar la info de su banko
@@ -38,4 +38,12 @@ export class SharesController {
     ) {
     return this.sharesService.findOne(id);
   }
+
+  @Get('user/:userId')
+  async findShareByUserId(@Param('userId') userId: string){
+    const shares = await this.sharesService.findShareByUserId(userId);
+    return shares;
+  }
+
+  
 }

@@ -48,7 +48,6 @@ export class User {
     })
     createOn: Date;
 
-
     @Column('text', {
         array: true,
         default: ['user']

@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { identity } from 'rxjs';
+import { identity, share } from 'rxjs';
 import { User } from 'src/auth/entities';
 import { Repository } from 'typeorm';
 import { CreateShareDto } from './dto/create-share.dto';
@@ -41,5 +41,10 @@ export class SharesService {
     return this.sharesRepository.findOneBy({buyId});
   }
 
+  findShareByUserId(userId: string){
+    return this.sharesRepository.find({where: {user: {id: userId}}})   
+  }
+
+  
   
 }

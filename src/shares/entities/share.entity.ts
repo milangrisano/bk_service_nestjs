@@ -1,5 +1,5 @@
 import { User } from "../../auth/entities";
-import { PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, Entity } from "typeorm";
+import { PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, Entity, JoinColumn } from "typeorm";
 
 @Entity()
 export class Shares {
@@ -21,8 +21,8 @@ export class Shares {
     createOn: Date;
 
     @Column({
-         type: 'bool',
-         default: false,
+        type: 'bool',
+        default: false,
     })
     status: boolean;
 
@@ -31,6 +31,6 @@ export class Shares {
         ( user )=> user.userShares,
         {eager: true }
     )
+    @JoinColumn({name: 'user_id'})
     user: User;
-    
 }
